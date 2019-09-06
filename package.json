@@ -2,9 +2,9 @@
   "name": "cars",
   "version": "1.0.0",
   "description": "cars mvc nodejs",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "tsc && node dist/app.js"
   },
   "repository": {
     "type": "git",
