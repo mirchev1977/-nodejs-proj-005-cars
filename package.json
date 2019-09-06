@@ -1,0 +1,21 @@
+{
+  "name": "cars",
+  "version": "1.0.0",
+  "description": "cars mvc nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mirchev7@bitbucket.org/mirchev7/nodejs.git"
+  },
+  "keywords": [
+    "cars",
+    "nodejs",
+    "mvc"
+  ],
+  "author": "Miroslav Mirchev",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mirchev7/nodejs#readme"
+}
