@@ -1,8 +1,9 @@
-const path       = require( 'path'        );
-const express    = require( 'express'     );
-const bodyParser = require( 'body-parser' );
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
 
-const rootDir = require( './utils/rootDir' );
+//const rootDir = require( './utils/rootDir' );
+import {} from './utils/rootDir';
 
 const app = express();
 
