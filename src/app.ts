@@ -1,3 +1,4 @@
+import fs         from 'fs';
 import path       from 'path';
 import express    from 'express';
 import bodyParser from 'body-parser';
@@ -14,6 +15,20 @@ app.use( express.static( path.join( rootDir, 'public' ) ) );
 app.use( bodyParser.urlencoded( { extended: false } ) );
 
 templ.seedCar()
+
+app.get( '/', ( req, res, next ) => {
+    let dataStr: string = '';
+    fs.readFile( './src/data/cars.data', ( err, data ) => {
+        if ( err ) {
+            console.log( err );
+        }
+
+        dataStr += data;
+
+        res.write( dataStr );
+        res.end();
+    } );
+} );
 
 app.use( ( req, res, next ) => {
     res.render( '404' );

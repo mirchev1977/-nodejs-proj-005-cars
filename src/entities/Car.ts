@@ -1,10 +1,10 @@
 class Car {
     constructor (
-        public brand:   string,
-        public model:   string,
-        public mileage: number,
-        public year:    number,
-        public imgUrl:  string
+        public brand:      string,
+        public model:      string,
+        public mileage:    number,
+        public producedIn: number,
+        public imgUrl:     string
     ) {
     }
 }
