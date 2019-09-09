@@ -1,6 +1,4 @@
 import fs from 'fs';
-import { resolve } from 'url';
-import { rejects } from 'assert';
 
 class Car {
     constructor (
