@@ -5,9 +5,9 @@ block body__all-cars
     .container__all-cars
         each _car in _arrCars
             .container__all-cars__car
-                h3=_car.brand
-                p=_car.model
-                p=_car.mileage
-                p=_car.producedIn
+                h3=`Car Brand: ${_car.brand}`
+                p=`Model: ${_car.model}`
+                p=`Mileage: ${_car.mileage}`
+                p=`Year of production: ${_car.producedIn}`
                 p.container__all-cars__car__p
                     img.container__all-cars__car__img-url(src=_car.imgUrl, alt="Car Image" )
