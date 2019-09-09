@@ -1,3 +1,7 @@
+import fs from 'fs';
+import { resolve } from 'url';
+import { rejects } from 'assert';
+
 class Car {
     constructor (
         public brand:      string,
@@ -6,6 +10,26 @@ class Car {
         public producedIn: number,
         public imgUrl:     string
     ) {
+    }
+
+    static fetchAll (): Promise<Car[]> {
+        let jsonCars = '';
+        const promise: Promise<Car[]> = new Promise( ( resolve, reject ) => {
+            fs.readFile( './src/data/cars.data', ( err, buffCars ) => {
+                let arrCars: Car[];
+                if ( err ) {
+                    arrCars = [];
+
+                    resolve( arrCars );
+                }
+                jsonCars += buffCars;
+
+                arrCars = JSON.parse( jsonCars );
+                resolve( arrCars );
+            } );
+        } );
+
+        return promise;
     }
 }
 
