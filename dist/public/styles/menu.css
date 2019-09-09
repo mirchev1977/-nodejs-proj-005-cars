@@ -1,0 +1,4 @@
+.body-menu > ul {
+    display: flex;
+    justify-content: left;
+}
