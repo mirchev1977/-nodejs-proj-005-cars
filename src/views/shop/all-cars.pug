@@ -2,7 +2,5 @@ block head__css
     head
         link(rel="stylesheet", href="/styles/all-cars.css" type="text/css")
 block body__all-cars
-    #cars-container
-        each _car in _arrCars
-            h1=_car.brand
-    script(src="/all-cars.js")
+    each _car in _arrCars
+        h1=_car.brand
