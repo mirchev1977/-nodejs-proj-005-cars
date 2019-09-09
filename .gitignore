@@ -7,4 +7,3 @@ branches
 .*.sw*
 
 node_modules
-dist
