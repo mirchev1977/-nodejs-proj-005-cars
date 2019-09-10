@@ -1,5 +1,3 @@
-extends ./sort-layout.pug
-
 block head__css
     head
         link(rel="stylesheet", href="/styles/menu.css", type="text/css")
@@ -14,5 +12,6 @@ block body
                     li One
                 a( href="#" )
                     li Two
+    include ./sort-layout.pug
     block body__all-cars
     block body__footer
