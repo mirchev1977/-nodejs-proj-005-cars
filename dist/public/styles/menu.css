@@ -1,4 +1,15 @@
 .body-menu > ul {
     display: flex;
     justify-content: left;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.body-menu > ul > a  > li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid gray;
+    padding: 10px 20px;
 }
