@@ -1,14 +1,18 @@
 block body__sort
     span Sort By: 
     span 
-    select
-        option Car Brand Asc
-        option Car Brand Desc
-    select
-        option Car Model Asc
-        option Car Model Desc
-    select
-        option Car Year Asc
-        option Car Year Desc
+    select( id="sort-layout__select" )
+        option --
+        option( value="/?sort=brand-asc"  ) Car Brand Asc
+        option( value="/?sort=brand-desc" ) Car Brand Desc
+
+        option( value="/?sort=model-asc"  ) Car Model Asc
+        option( value="/?sort=model-desc" ) Car Model Desc
+
+        option( value="/?sort=mileage-asc"  ) Car Mileage Asc
+        option( value="/?sort=mileage-desc" ) Car Mileage Desc
+
+        option( value="/?sort=year-asc"  ) Car Year Asc
+        option( value="/?sort=year-desc" ) Car Year Desc
     br
     br

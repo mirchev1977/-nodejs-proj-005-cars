@@ -7,7 +7,7 @@ const fs_1 = __importDefault(require("fs"));
 const Car_1 = __importDefault(require("./Car"));
 const arrCars = [
     new Car_1.default('Audi', 'A3', 300000, 2013, 'https://tinyurl.com/yxqfy4g7'),
-    new Car_1.default('Mazda', '6', 1000, 2018, 'https://tinyurl.com/y3opcqhq'),
+    new Car_1.default('Mazda', '6', 1000, 2018, 'https://tinyurl.com/yxmplpsc'),
     new Car_1.default('Toyota', 'Corolla', 2000, 2015, 'https://tinyurl.com/y3hbxsdt'),
     new Car_1.default('Lada', 'Niva', 52000, 2015, 'https://tinyurl.com/yy4bf9k9'),
     new Car_1.default('Kia', 'Stonic', 12000, 2019, 'https://tinyurl.com/y4vklxm3'),
