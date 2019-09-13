@@ -2,7 +2,6 @@ function sortCars () {
     const domIdBrand    = document.getElementById( 'sort-layout__select'    );
 
     domIdBrand.addEventListener( 'change', ( ev ) => {
-        debugger;
         let selectedSortOption = (<HTMLOptionElement>(<HTMLInputElement>ev.target)
             .children[(<HTMLSelectElement>ev.target).selectedIndex]).value;
 

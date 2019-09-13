@@ -13,7 +13,6 @@ class Car {
         this.imgUrl = imgUrl;
     }
     static fetchAll(sortBy = 'brand-asc') {
-        console.log(sortBy);
         let jsonCars = '';
         const promise = new Promise((resolve, reject) => {
             fs_1.default.readFile('./src/data/cars.data', (err, buffCars) => {
@@ -24,10 +23,46 @@ class Car {
                 }
                 jsonCars += buffCars;
                 arrCars = JSON.parse(jsonCars);
-                resolve(arrCars);
+                resolve(this.sortBy(arrCars, sortBy));
             });
         });
         return promise;
+    }
+    static sortBy(arrCars, sortBy = 'brand-asc') {
+        const _arrCars = [...arrCars];
+        _arrCars.sort((a, b) => {
+            let result = 0;
+            switch (sortBy) {
+                case 'brand-asc':
+                    result = a.brand.localeCompare(b.brand);
+                    break;
+                case 'brand-desc':
+                    result = b.brand.localeCompare(a.brand);
+                    break;
+                case 'model-asc':
+                    result = a.model.localeCompare(b.model);
+                    break;
+                case 'model-desc':
+                    result = b.model.localeCompare(a.model);
+                    break;
+                case 'mileage-asc':
+                    result = a.mileage - b.mileage;
+                    break;
+                case 'mileage-desc':
+                    result = b.mileage - a.mileage;
+                    break;
+                case 'year-asc':
+                    result = a.producedIn - b.producedIn;
+                    break;
+                case 'mileage-desc':
+                    result = b.producedIn - a.producedIn;
+                    break;
+                default:
+                    result = a.brand.localeCompare(b.brand);
+            }
+            return result;
+        });
+        return _arrCars;
     }
 }
 exports.default = Car;
