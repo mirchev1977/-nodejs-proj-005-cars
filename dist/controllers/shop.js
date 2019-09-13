@@ -7,8 +7,6 @@ const Car_1 = __importDefault(require("../entities/Car"));
 function getAllCars(req, res, next) {
     Car_1.default.fetchAll().then(_arrCars => {
         res.render('shop/all-cars', { _arrCars: _arrCars });
-        //res.write( JSON.stringify( _arrCars ) );
-        //res.end();
     });
 }
 exports.getAllCars = getAllCars;
