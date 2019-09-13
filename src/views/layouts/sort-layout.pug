@@ -3,16 +3,44 @@ block body__sort
     span 
     select( id="sort-layout__select" )
         option --
-        option( value="/?sort=brand-asc"  ) Car Brand Asc
-        option( value="/?sort=brand-desc" ) Car Brand Desc
+        if sortBy === 'brand-asc'
+            option( value="/?sort=brand-asc" selected  ) Car Brand Asc
+        else
+            option( value="/?sort=brand-asc"  ) Car Brand Asc
 
-        option( value="/?sort=model-asc"  ) Car Model Asc
-        option( value="/?sort=model-desc" ) Car Model Desc
+        if sortBy === 'brand-desc'
+            option( value="/?sort=brand-desc" selected ) Car Brand Desc
+        else
+            option( value="/?sort=brand-desc" ) Car Brand Desc
 
-        option( value="/?sort=mileage-asc"  ) Car Mileage Asc
-        option( value="/?sort=mileage-desc" ) Car Mileage Desc
+        if sortBy === 'model-asc'
+            option( value="/?sort=model-asc" selected  ) Car Model Asc
+        else
+            option( value="/?sort=model-asc"  ) Car Model Asc
 
-        option( value="/?sort=year-asc"  ) Car Year Asc
-        option( value="/?sort=year-desc" ) Car Year Desc
+        if sortBy === 'model-desc'
+            option( value="/?sort=model-desc" selected ) Car Model Desc
+        else
+            option( value="/?sort=model-desc" ) Car Model Desc
+
+        if sortBy === 'mileage-asc'
+            option( value="/?sort=mileage-asc" selected  ) Car Mileage Asc
+        else
+            option( value="/?sort=mileage-asc"  ) Car Mileage Asc
+
+        if sortBy === 'mileage-desc'
+            option( value="/?sort=mileage-desc" selected ) Car Mileage Desc
+        else
+            option( value="/?sort=mileage-desc" ) Car Mileage Desc
+
+        if sortBy === 'year-asc'
+            option( value="/?sort=year-asc" selected ) Car Year Asc
+        else
+            option( value="/?sort=year-asc"  ) Car Year Asc
+
+        if sortBy === 'year-desc'
+            option( value="/?sort=year-desc" selected ) Car Year Desc
+        else
+            option( value="/?sort=year-desc" ) Car Year Desc
     br
     br
