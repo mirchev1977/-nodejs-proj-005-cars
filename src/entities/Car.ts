@@ -10,7 +10,7 @@ class Car {
     ) {
     }
 
-    static fetchAll (): Promise<Car[]> {
+    static fetchAll ( sortBy: string = 'brand-asc' ): Promise<Car[]> {
         let jsonCars = '';
         const promise: Promise<Car[]> = new Promise( ( resolve, reject ) => {
             fs.readFile( './src/data/cars.data', ( err, buffCars ) => {

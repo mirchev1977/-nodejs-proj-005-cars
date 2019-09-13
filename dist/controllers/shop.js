@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Car_1 = __importDefault(require("../entities/Car"));
 function getAllCars(req, res, next) {
-    Car_1.default.fetchAll().then(_arrCars => {
+    Car_1.default.fetchAll(req.query['sort']).then(_arrCars => {
         res.render('shop/all-cars', { _arrCars: _arrCars });
     });
 }

@@ -12,7 +12,8 @@ class Car {
         this.producedIn = producedIn;
         this.imgUrl = imgUrl;
     }
-    static fetchAll() {
+    static fetchAll(sortBy = 'brand-asc') {
+        console.log(sortBy);
         let jsonCars = '';
         const promise = new Promise((resolve, reject) => {
             fs_1.default.readFile('./src/data/cars.data', (err, buffCars) => {
