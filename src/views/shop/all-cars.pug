@@ -8,8 +8,17 @@ block body__all-cars
         each _car in _arrCars
             .container__all-cars__car
                 h3=`Car Brand: ${_car.brand}`
-                p=`Model: ${_car.model}`
-                p=`Mileage: ${_car.mileage}`
-                p=`Year of production: ${_car.producedIn}`
+                div.container__car-details
+                    div.container__car-details__details
+                        p=`Model: ${_car.model}`
+                        p=`Mileage: ${_car.mileage}`
+                        p=`Year of production: ${_car.producedIn}`
+                    div.container__car-details__favorites
+                        if sortBy
+                            a( href=`/?brand=${_car.brand}&sort=${sortBy}` )
+                                img(src="https://tinyurl.com/y3j7xy34", alt="Favorite")
+                        else
+                            a( href=`/?brand=${_car.brand}&sort=brand-asc` )
+                                img(src="https://tinyurl.com/y3j7xy34", alt="Favorite")
                 p.container__all-cars__car__p
                     img.container__all-cars__car__img-url(src=_car.imgUrl, alt="Car Image" )
