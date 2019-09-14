@@ -5,12 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 class Car {
-    constructor(brand, model, mileage, producedIn, imgUrl) {
+    constructor(id, brand, model, mileage, producedIn, imgUrl, favSelected = false) {
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.mileage = mileage;
         this.producedIn = producedIn;
         this.imgUrl = imgUrl;
+        this.favSelected = favSelected;
     }
     static fetchAll(sortBy = 'brand-asc') {
         let jsonCars = '';

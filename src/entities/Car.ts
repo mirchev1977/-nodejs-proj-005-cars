@@ -2,11 +2,13 @@ import fs from 'fs';
 
 class Car {
     constructor (
-        public brand:      string,
-        public model:      string,
-        public mileage:    number,
-        public producedIn: number,
-        public imgUrl:     string
+        public id:          number,
+        public brand:       string,
+        public model:       string,
+        public mileage:     number,
+        public producedIn:  number,
+        public imgUrl:      string,
+        public favSelected: boolean = false
     ) {
     }
 
