@@ -54,7 +54,7 @@ class Car {
                 case 'year-asc':
                     result = a.producedIn - b.producedIn;
                     break;
-                case 'mileage-desc':
+                case 'year-desc':
                     result = b.producedIn - a.producedIn;
                     break;
                 default:
