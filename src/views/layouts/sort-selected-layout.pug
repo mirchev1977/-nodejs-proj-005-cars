@@ -1,0 +1,46 @@
+block body__sort
+    span Sort By: 
+    span 
+    select( id="sort-layout__select" )
+        option --
+        if sortBy === 'brand-asc'
+            option( value="/favorites?sort=brand-asc" selected  ) Car Brand Asc
+        else
+            option( value="/favorites?sort=brand-asc"  ) Car Brand Asc
+
+        if sortBy === 'brand-desc'
+            option( value="/favorites?sort=brand-desc" selected ) Car Brand Desc
+        else
+            option( value="/favorites?sort=brand-desc" ) Car Brand Desc
+
+        if sortBy === 'model-asc'
+            option( value="/favorites?sort=model-asc" selected  ) Car Model Asc
+        else
+            option( value="/favorites?sort=model-asc"  ) Car Model Asc
+
+        if sortBy === 'model-desc'
+            option( value="/favorites?sort=model-desc" selected ) Car Model Desc
+        else
+            option( value="/favorites?sort=model-desc" ) Car Model Desc
+
+        if sortBy === 'mileage-asc'
+            option( value="/favorites?sort=mileage-asc" selected  ) Car Mileage Asc
+        else
+            option( value="/favorites?sort=mileage-asc"  ) Car Mileage Asc
+
+        if sortBy === 'mileage-desc'
+            option( value="/favorites?sort=mileage-desc" selected ) Car Mileage Desc
+        else
+            option( value="/favorites?sort=mileage-desc" ) Car Mileage Desc
+
+        if sortBy === 'year-asc'
+            option( value="/favorites?sort=year-asc" selected ) Car Year Asc
+        else
+            option( value="/favorites?sort=year-asc"  ) Car Year Asc
+
+        if sortBy === 'year-desc'
+            option( value="/favorites?sort=year-desc" selected ) Car Year Desc
+        else
+            option( value="/favorites?sort=year-desc" ) Car Year Desc
+    br
+    br

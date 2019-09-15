@@ -42,6 +42,18 @@ class Car {
         });
         return promise;
     }
+    static fetchOnlySelected(sortBy = 'brand-asc') {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchAll('id').then(carsAll => {
+                const _carsSelectedOnly = carsAll.filter(car => {
+                    if (car.favSelected)
+                        return true;
+                });
+                resolve(Car.sortBy(_carsSelectedOnly, sortBy));
+            });
+        });
+        return promise;
+    }
     favSelectDeselect(sortBy = 'brand-asc') {
         const promise = new Promise((resolve, reject) => {
             this.favSelected = !this.favSelected;

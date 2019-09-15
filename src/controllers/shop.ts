@@ -1,8 +1,17 @@
 import Car from '../entities/Car';
 
-export function getAllCars (  req, res, next  ) {
+export function getCarsAll (  req, res, next  ) {
     Car.fetchAll( req.query[ 'sort' ] ).then( _arrCars => {
-        res.render( 'shop/all-cars', { 
+        res.render( 'shop/cars-all', { 
+            _arrCars: _arrCars,
+            sortBy:   req.query[ 'sort' ] 
+        } );
+    } ); 
+}
+
+export function getCarsSelected (  req, res, next  ) {
+    Car.fetchOnlySelected( req.query[ 'sort' ] ).then( _arrCars => {
+        res.render( 'shop/cars-selected', { 
             _arrCars: _arrCars,
             sortBy:   req.query[ 'sort' ] 
         } );
@@ -10,8 +19,9 @@ export function getAllCars (  req, res, next  ) {
 }
 
 export function getCarSelectFav( req, res, next ) {
-    const idCar:  number = req.params[ 'id'   ] * 1;
-    const sortBy: string = req.query[  'sort' ];
+    const idCar:  number    = req.params[ 'id'        ] * 1;
+    const sortBy: string    = req.query[  'sort'      ];
+    const favorites: string = req.query[  'favorites' ];
 
     Car.fetchOneById( idCar ).then( carSelected => {
         const _carSelected = new Car(
@@ -21,7 +31,11 @@ export function getCarSelectFav( req, res, next ) {
         );
         return _carSelected.favSelectDeselect( sortBy );
     } ).then( successMessage => {
-        res.redirect( `/?sort=${sortBy}` );
+        if ( favorites ) {
+            res.redirect( `/favorites?sort=${sortBy}&favorites=1` ); 
+        } else {
+            res.redirect( `/?sort=${sortBy}` ); 
+        }
     } ).catch( err => {
         console.log( 'err', err );
         debugger;

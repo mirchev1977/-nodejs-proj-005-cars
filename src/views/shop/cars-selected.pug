@@ -1,0 +1,44 @@
+extends ../layouts/shop-layout.pug
+
+block sort__menu
+    include ../layouts/sort-selected-layout.pug
+
+block body__menu
+    div.body-menu
+        ul
+            a( href="/" )
+                li Home
+            a( href="/favorites" )
+                li( class="body-menu__active" ) Favorites
+
+block append head__css
+    head
+        link(rel="stylesheet", href="/styles/all-cars.css", type="text/css")
+block body__all-cars
+    if  _arrCars.length > 0
+        .container__all-cars
+            each _car in _arrCars
+                .container__all-cars__car
+                    h3=`Car Brand: ${_car.brand}`
+                    div.container__car-details
+                        div.container__car-details__details
+                            p=`Model: ${_car.model}`
+                            p=`Mileage: ${_car.mileage}`
+                            p=`Year of production: ${_car.producedIn}`
+                        div.container__car-details__favorites
+                            if sortBy
+                                a( href=`/select-fav/${_car.id}?sort=${sortBy}&favorites=1` )
+                                    if _car.favSelected
+                                        include ./view_fav_selected.pug
+                                    else
+                                        include ./view_fav_unselected.pug
+                            else
+                                a( href=`/select-fav/${_car.id}?sort=brand-asc&favorites=1` )
+                                    if _car.favSelected
+                                        include ./view_fav_selected.pug
+                                    else
+                                        include ./view_fav_unselected.pug
+                    p.container__all-cars__car__p
+                        img.container__all-cars__car__img-url(src=_car.imgUrl, alt="Car Image" )
+    else
+        h1 No Favorite Cars Selected Yet...

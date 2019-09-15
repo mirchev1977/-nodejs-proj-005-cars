@@ -1,5 +1,17 @@
 extends ../layouts/shop-layout.pug
 
+
+block sort__menu
+    include ../layouts/sort-layout.pug
+
+block body__menu
+    div.body-menu
+        ul
+            a( href="/" )
+                li( class="body-menu__active" ) Home
+            a( href="/favorites" )
+                li Favorites
+
 block append head__css
     head
         link(rel="stylesheet", href="/styles/all-cars.css", type="text/css")

@@ -13,7 +13,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const contrShop = __importStar(require("../controllers/shop"));
 const router = express_1.default.Router();
-router.get('/', contrShop.getAllCars);
+router.get('/', contrShop.getCarsAll);
 router.get('/select-fav/:id', contrShop.getCarSelectFav);
+router.get('/favorites', contrShop.getCarsSelected);
 exports.default = router;
 //# sourceMappingURL=shop.js.map

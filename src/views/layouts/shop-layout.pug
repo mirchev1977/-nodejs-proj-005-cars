@@ -5,14 +5,6 @@ block head__css
 block body
     body( onload="sortCars()" )
         block body__menu
-            div.body-menu
-                ul
-                    a( href="/" )
-                        li( class="body-menu__active" ) Home
-                    a( href="#" )
-                        li One
-                    a( href="#" )
-                        li Two
-        include ./sort-layout.pug
+        block sort__menu
         block body__all-cars
         block body__footer

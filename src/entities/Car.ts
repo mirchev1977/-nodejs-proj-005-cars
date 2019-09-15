@@ -49,6 +49,20 @@ export default class Car {
         return promise;
     }
 
+    static fetchOnlySelected ( sortBy: string = 'brand-asc' ): Promise<Car[]> {
+        const promise: Promise<Car[]> = new Promise( ( resolve, reject ) => {
+            Car.fetchAll( 'id' ).then( carsAll => {
+                const _carsSelectedOnly = carsAll.filter( car => {
+                    if ( car.favSelected ) return true;
+                } );
+
+                resolve( Car.sortBy( _carsSelectedOnly, sortBy ) );
+            } );
+        } );
+
+        return promise;
+    }
+
     favSelectDeselect ( sortBy: string = 'brand-asc' ): Promise<string> {
         const promise: Promise<string> = new Promise( ( resolve, reject ) => {
             this.favSelected = !this.favSelected;
