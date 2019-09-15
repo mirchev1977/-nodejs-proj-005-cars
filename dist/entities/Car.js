@@ -17,7 +17,7 @@ class Car {
     static fetchAll(sortBy = 'brand-asc') {
         let jsonCars = '';
         const promise = new Promise((resolve, reject) => {
-            fs_1.default.readFile('./src/data/cars.data', (err, buffCars) => {
+            fs_1.default.readFile(Car._fileStore, (err, buffCars) => {
                 let arrCars;
                 if (err) {
                     arrCars = [];
@@ -25,7 +25,62 @@ class Car {
                 }
                 jsonCars += buffCars;
                 arrCars = JSON.parse(jsonCars);
-                resolve(this.sortBy(arrCars, sortBy));
+                resolve(Car.sortBy(arrCars, sortBy));
+            });
+        });
+        return promise;
+    }
+    static fetchOneById(id) {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchAll('id').then(arrCars => {
+                resolve(arrCars.filter(car => {
+                    return (car.id === id);
+                })[0]);
+            }).catch(err => {
+                reject('No car found');
+            });
+        });
+        return promise;
+    }
+    favSelectDeselect(sortBy = 'brand-asc') {
+        const promise = new Promise((resolve, reject) => {
+            this.favSelected = !this.favSelected;
+            this.save(sortBy).then(msgSuccess => {
+                resolve(msgSuccess);
+            }).catch(msgErr => {
+                reject(msgErr);
+            });
+        });
+        return promise;
+    }
+    save(sortBy = 'brand-asc') {
+        const promise = new Promise((resolve, reject) => {
+            this.update(sortBy).then(arrCarsUpdated => {
+                const json = JSON.stringify(arrCarsUpdated);
+                fs_1.default.writeFile(Car._fileStore, json, err => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve('Saved');
+                });
+            });
+        });
+        return promise;
+    }
+    update(sortBy = 'brand-asc') {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchAll(sortBy).then(arrCars => {
+                if (arrCars.length <= 0) {
+                    reject([]);
+                    return;
+                }
+                arrCars.forEach((car, i) => {
+                    if (car.id === this.id) {
+                        arrCars[i] = this;
+                        return false;
+                    }
+                });
+                resolve(arrCars);
             });
         });
         return promise;
@@ -60,7 +115,7 @@ class Car {
                     result = b.producedIn - a.producedIn;
                     break;
                 default:
-                    result = a.brand.localeCompare(b.brand);
+                    result = a.id - b.id;
             }
             return result;
         });
@@ -68,4 +123,5 @@ class Car {
     }
 }
 exports.default = Car;
+Car._fileStore = './src/data/cars.data';
 //# sourceMappingURL=Car.js.map

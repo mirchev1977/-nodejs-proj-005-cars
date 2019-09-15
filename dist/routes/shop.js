@@ -14,5 +14,6 @@ const express_1 = __importDefault(require("express"));
 const contrShop = __importStar(require("../controllers/shop"));
 const router = express_1.default.Router();
 router.get('/', contrShop.getAllCars);
+router.get('/select-fav/:id', contrShop.getCarSelectFav);
 exports.default = router;
 //# sourceMappingURL=shop.js.map

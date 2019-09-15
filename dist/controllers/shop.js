@@ -13,4 +13,20 @@ function getAllCars(req, res, next) {
     });
 }
 exports.getAllCars = getAllCars;
+function getCarSelectFav(req, res, next) {
+    const idCar = req.params['id'] * 1;
+    const sortBy = req.query['sort'];
+    Car_1.default.fetchOneById(idCar).then(carSelected => {
+        const _carSelected = new Car_1.default(carSelected.id, carSelected.brand, carSelected.model, carSelected.mileage, carSelected.producedIn, carSelected.imgUrl, carSelected.favSelected);
+        return _carSelected.favSelectDeselect(sortBy);
+    }).then(successMessage => {
+        console.log(successMessage);
+        res.redirect(`/?sort=${sortBy}`);
+    }).catch(err => {
+        console.log('err', err);
+        debugger;
+        res.redirect('/?sort=${sortBy}');
+    });
+}
+exports.getCarSelectFav = getCarSelectFav;
 //# sourceMappingURL=shop.js.map

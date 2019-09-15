@@ -15,13 +15,13 @@ block body__all-cars
                         p=`Year of production: ${_car.producedIn}`
                     div.container__car-details__favorites
                         if sortBy
-                            a( href=`/?brand=${_car.id}&sort=${sortBy}` )
+                            a( href=`/select-fav/${_car.id}?sort=${sortBy}` )
                                 if _car.favSelected
                                     include ./view_fav_selected.pug
                                 else
                                     include ./view_fav_unselected.pug
                         else
-                            a( href=`/?brand=${_car.id}&sort=brand-asc` )
+                            a( href=`/select-fav/${_car.id}?sort=brand-asc` )
                                 if _car.favSelected
                                     include ./view_fav_selected.pug
                                 else
