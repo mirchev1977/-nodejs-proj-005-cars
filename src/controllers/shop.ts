@@ -21,7 +21,6 @@ export function getCarSelectFav( req, res, next ) {
         );
         return _carSelected.favSelectDeselect( sortBy );
     } ).then( successMessage => {
-        console.log( successMessage );
         res.redirect( `/?sort=${sortBy}` );
     } ).catch( err => {
         console.log( 'err', err );
