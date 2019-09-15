@@ -15,7 +15,7 @@ app.set( 'views',       'src/views' );
 app.use( express.static( path.join( rootDir, 'public' ) ) ); 
 app.use( bodyParser.urlencoded( { extended: false } ) );
 
-//templ.seedCar()
+templ.seedCar()
 
 app.use( shopRoutes );
 
