@@ -5,7 +5,8 @@ import bodyParser from 'body-parser';
 import rootDir from './utils/rootDir';
 import * as templ from  './entities/templates';
 
-import shopRoutes from './routes/shop';
+import shopRoutes  from './routes/shop';
+import adminRoutes from './routes/admin';
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use( bodyParser.urlencoded( { extended: false } ) );
 
 //templ.seedCar()
 
-app.use( shopRoutes );
+app.use( shopRoutes  );
+app.use( adminRoutes );
 
 app.use( ( req, res, next ) => {
     res.render( '404' );

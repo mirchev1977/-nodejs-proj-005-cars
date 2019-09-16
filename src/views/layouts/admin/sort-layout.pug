@@ -1,0 +1,46 @@
+block body__sort
+    span Sort By: 
+    span 
+    select( id="sort-layout__select" )
+        option --
+        if sortBy === 'brand-asc'
+            option( value="/admin?sort=brand-asc" selected  ) Car Brand Asc
+        else
+            option( value="/admin?sort=brand-asc"  ) Car Brand Asc
+
+        if sortBy === 'brand-desc'
+            option( value="/admin?sort=brand-desc" selected ) Car Brand Desc
+        else
+            option( value="/admin?sort=brand-desc" ) Car Brand Desc
+
+        if sortBy === 'model-asc'
+            option( value="/admin?sort=model-asc" selected  ) Car Model Asc
+        else
+            option( value="/admin?sort=model-asc"  ) Car Model Asc
+
+        if sortBy === 'model-desc'
+            option( value="/admin?sort=model-desc" selected ) Car Model Desc
+        else
+            option( value="/admin?sort=model-desc" ) Car Model Desc
+
+        if sortBy === 'mileage-asc'
+            option( value="/admin?sort=mileage-asc" selected  ) Car Mileage Asc
+        else
+            option( value="/admin?sort=mileage-asc"  ) Car Mileage Asc
+
+        if sortBy === 'mileage-desc'
+            option( value="/admin?sort=mileage-desc" selected ) Car Mileage Desc
+        else
+            option( value="/admin?sort=mileage-desc" ) Car Mileage Desc
+
+        if sortBy === 'year-asc'
+            option( value="/admin?sort=year-asc" selected ) Car Year Asc
+        else
+            option( value="/admin?sort=year-asc"  ) Car Year Asc
+
+        if sortBy === 'year-desc'
+            option( value="/admin?sort=year-desc" selected ) Car Year Desc
+        else
+            option( value="/admin?sort=year-desc" ) Car Year Desc
+    br
+    br

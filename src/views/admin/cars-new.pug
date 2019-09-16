@@ -1,0 +1,17 @@
+extends ../layouts/shop-layout.pug
+
+block body__menu
+    div.body-menu
+        ul
+            a( href="/" )
+                li Home
+            a( href="/admin" )
+                li Admin
+            a( href="/admin/new" )
+                li( class="body-menu__active" ) New Car
+
+block append head__css
+    head
+        link(rel="stylesheet", href="/styles/all-cars.css", type="text/css")
+block body__all-cars
+    h1 Here I'll be entering a new car...

@@ -6,6 +6,6 @@ const router = express.Router();
 router.get( '/',               contrShop.getCarsAll      );
 router.get( '/select-fav/:id', contrShop.getCarSelectFav );
 
-router.get( '/favorites',      contrShop.getCarsSelected      );
+router.get( '/favorites',      contrShop.getCarsSelected );
 
 export default router;
