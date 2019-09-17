@@ -54,6 +54,45 @@ class Car {
         });
         return promise;
     }
+    static fetchCarsCounter() {
+        let strCarsCounter = '';
+        const promise = new Promise((resolve, reject) => {
+            fs_1.default.readFile(Car._fileCarsCounter, (err, buffCarsCounter) => {
+                if (err) {
+                    reject('err');
+                }
+                strCarsCounter += buffCarsCounter;
+                resolve(Number(strCarsCounter));
+            });
+        });
+        return promise;
+    }
+    static writeCarsCounter(carCounter) {
+        const promise = new Promise((resolve, reject) => {
+            fs_1.default.writeFile(Car._fileCarsCounter, carCounter, err => {
+                if (err) {
+                    reject('err');
+                }
+                resolve('Success');
+            });
+        });
+        return promise;
+    }
+    static createNewCar(car) {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchCarsCounter().then(carCounter => {
+                car.id = ++carCounter;
+                return car.save();
+            }).then(msgSuccess => {
+                return Car.writeCarsCounter(car.id);
+            }).then(msgSuccess => {
+                resolve(msgSuccess);
+            }).catch(errMsg => {
+                reject(errMsg);
+            });
+        });
+        return promise;
+    }
     favSelectDeselect(sortBy = 'brand-asc') {
         const promise = new Promise((resolve, reject) => {
             this.favSelected = !this.favSelected;
@@ -86,12 +125,17 @@ class Car {
                     reject([]);
                     return;
                 }
+                let updated = false;
                 arrCars.forEach((car, i) => {
                     if (car.id === this.id) {
+                        updated = true;
                         arrCars[i] = this;
                         return false;
                     }
                 });
+                if (!updated) {
+                    arrCars.push(this);
+                }
                 resolve(arrCars);
             });
         });
@@ -136,4 +180,5 @@ class Car {
 }
 exports.default = Car;
 Car._fileStore = './src/data/cars.data';
+Car._fileCarsCounter = './src/data/cars.counter.data';
 //# sourceMappingURL=Car.js.map

@@ -12,6 +12,25 @@ block body__menu
 
 block append head__css
     head
-        link(rel="stylesheet", href="/styles/all-cars.css", type="text/css")
+        link(rel="stylesheet", href="/styles/cars-new.css", type="text/css")
 block body__all-cars
-    h1 Here I'll be entering a new car...
+    h1 Create New Car
+    form(action="/admin/new" method="POST")
+        div( class="new-car__input-row" )
+            label( for="brand" ) Brand
+            input( type="text" id="brand" name="brand" )
+        div( class="new-car__input-row" )
+            label( for="model" ) Model
+            input( type="text" id="model" name="model" )
+        div( class="new-car__input-row" )
+            label( for="mileage" ) Mileage
+            input( type="number" id="mileage" name="mileage" )
+        div( class="new-car__input-row" )
+            label( for="producedIn" ) Year of Production
+            input( type="number" id="producedIn" name="producedIn" )
+        div( class="new-car__input-row" )
+            label( for="imgUrl" ) Image Url
+            input( type="text" id="imgUrl" name="imgUrl" )
+        input( type="hidden" id="favSelected" name="favSelected" value="false" )
+        div( class="new-car__input-row" )
+            button( type="submit" ) Submit

@@ -1,7 +1,8 @@
 import fs from 'fs';
 
 export default class Car {
-    private static _fileStore = './src/data/cars.data';
+    private static _fileStore       = './src/data/cars.data';
+    private static _fileCarsCounter = './src/data/cars.counter.data';
 
     constructor (
         public id:          number,
@@ -63,6 +64,56 @@ export default class Car {
         return promise;
     }
 
+    static fetchCarsCounter (): Promise<number> {
+        let strCarsCounter = '';
+        const promise: Promise<number> = new Promise( ( resolve, reject ) => {
+            fs.readFile( Car._fileCarsCounter, ( err, buffCarsCounter ) => {
+                if ( err ) {
+                    reject( 'err' );
+                }
+
+                strCarsCounter += buffCarsCounter;
+
+                resolve( Number( strCarsCounter ) );
+            } );
+
+        } );
+
+        return promise;
+    }
+
+    static writeCarsCounter ( carCounter: number ): Promise<string> {
+        const promise: Promise<string> = new Promise( ( resolve, reject ) => {
+            fs.writeFile( Car._fileCarsCounter, carCounter, err => {
+                if ( err ) {
+                    reject( 'err' );
+                }
+
+                resolve( 'Success' );
+            } ); 
+        } );
+
+        return promise;
+    }
+
+    static createNewCar ( car: Car ): Promise<string> {
+        const promise: Promise<string> = new Promise( ( resolve, reject ) => {
+            Car.fetchCarsCounter().then( carCounter => {
+                car.id = ++carCounter;
+
+                return car.save();
+            } ).then( msgSuccess => {
+                return Car.writeCarsCounter( car.id );
+            } ).then( msgSuccess => {
+                resolve( msgSuccess );
+            } ).catch( errMsg => {
+                reject( errMsg );
+            } );
+        } );
+
+        return promise;
+    }
+
     favSelectDeselect ( sortBy: string = 'brand-asc' ): Promise<string> {
         const promise: Promise<string> = new Promise( ( resolve, reject ) => {
             this.favSelected = !this.favSelected;
@@ -102,12 +153,18 @@ export default class Car {
                     return;
                 } 
 
+                let updated = false;
                 arrCars.forEach( ( car, i ) => {
                     if ( car.id === this.id ) {
+                        updated = true;
                         arrCars[ i ] = this;
                         return false;
                     }
                 } );
+
+                if ( !updated ) {
+                    arrCars.push( this );
+                }
 
                 resolve( arrCars );
             } );

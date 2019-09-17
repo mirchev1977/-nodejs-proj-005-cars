@@ -15,5 +15,6 @@ const contrAdmin = __importStar(require("../controllers/admin"));
 const router = express_1.default.Router();
 router.get('/admin', contrAdmin.getCarsAll);
 router.get('/admin/new', contrAdmin.getCarsNew);
+router.post('/admin/new', contrAdmin.postCarsNew);
 exports.default = router;
 //# sourceMappingURL=admin.js.map

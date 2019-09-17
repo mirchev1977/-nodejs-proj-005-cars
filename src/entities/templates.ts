@@ -7,7 +7,7 @@ const arrCars: Car[]= [
         ),
     new Car( 2, 'Mazda',  '6',         1000,   2018, 'https://tinyurl.com/yxmplpsc' 
         ),
-    new Car( 3, 'Toyota', 'Corolla',   2000,   2015, 'https://tinyurl.com/y3hbxsdt' 
+    new Car( 3, 'Toyota', 'Corolla',   2000,   2015, 'https://tinyurl.com/y3ahq94w' 
         ),
     new Car( 4, 'Lada',   'Niva',      52000,  2015, 'https://tinyurl.com/yy4bf9k9' 
         ),
@@ -18,6 +18,12 @@ export function seedCar () {
     const json: string = JSON.stringify( arrCars ); 
 
     fs.writeFile( './src/data/cars.data', json, err => {
+        if ( err ) {
+            console.log( err );
+        } 
+    } );
+
+    fs.writeFile( './src/data/cars.counter.data', '5', err => {
         if ( err ) {
             console.log( err );
         } 

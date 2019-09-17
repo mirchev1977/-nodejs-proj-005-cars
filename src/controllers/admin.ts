@@ -17,3 +17,26 @@ export function getCarsNew (  req, res, next  ) {
         } );
     } ); 
 }
+
+export function postCarsNew (  req, res, next  ) {
+    Car.createNewCar(
+        new Car( 
+            0, 
+            req.body[ 'brand'      ],   
+            req.body[ 'model'      ],   
+            req.body[ 'mileage'    ],   
+            req.body[ 'producedIn' ],   
+            req.body[ 'imgUrl'     ]
+            )
+    ).then( msgSuccess => {
+        Car.fetchAll( 'brand-asc' ).then( _arrCars => {
+            res.render( 'admin/cars-all', { 
+                _arrCars: _arrCars,
+                sortBy:   req.query[ 'sort' ] || 'brand-asc' 
+            } );
+        } ); 
+    } ).catch( msgErr => {
+        console.log( msgErr );
+        debugger;
+    } );
+}
