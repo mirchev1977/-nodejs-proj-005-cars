@@ -42,6 +42,48 @@ class Car {
         });
         return promise;
     }
+    delete() {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchAll('id').then(arrCars => {
+                const _carsFiltered = arrCars.filter(car => {
+                    return (car.id !== this.id);
+                });
+                return Car.writeCars(_carsFiltered);
+            }).then(success => {
+                resolve('OK');
+            }).catch(err => {
+                reject('ERR');
+            });
+        });
+        return promise;
+    }
+    static writeCars(cars) {
+        const _cars = [...cars];
+        const _carsJson = JSON.stringify(_cars.sort((a, b) => {
+            return a.id - b.id;
+        }));
+        const promise = new Promise((resolve, reject) => {
+            fs_1.default.writeFile('./src/data/cars.data', _carsJson, err => {
+                if (err) {
+                    reject('ERR');
+                }
+                resolve('OK');
+            });
+        });
+        return promise;
+    }
+    static deleteById(id) {
+        const promise = new Promise((resolve, reject) => {
+            Car.fetchOneById(id).then(carFetched => {
+                return carFetched.delete();
+            }).then(OK => {
+                resolve('OK');
+            }).catch(ERR => {
+                reject('ERR');
+            });
+        });
+        return promise;
+    }
     static fetchOnlySelected(sortBy = 'brand-asc') {
         const promise = new Promise((resolve, reject) => {
             Car.fetchAll('id').then(carsAll => {
