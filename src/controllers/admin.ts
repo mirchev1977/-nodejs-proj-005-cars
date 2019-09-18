@@ -40,3 +40,24 @@ export function postCarsNew (  req, res, next  ) {
         debugger;
     } );
 }
+
+export function getCarDelete ( req, res, next ) {
+    const _carId  = req.params[ 'id'   ] * 1;
+    const _sortBy = req.query[  'sort' ];
+
+    Car.deleteById( _carId ).then( OK => {
+        Car.fetchAll( _sortBy ).then( _arrCars => {
+            res.render( 'admin/cars-all', { 
+                _arrCars: _arrCars,
+                sortBy:   _sortBy || 'brand-asc' 
+            } );
+        } ); 
+    } ).catch( ERR => {
+        Car.fetchAll( _sortBy ).then( _arrCars => {
+            res.render( 'admin/cars-all', { 
+                _arrCars: _arrCars,
+                sortBy:   _sortBy || 'brand-asc' 
+            } );
+        } ); 
+    } );
+}

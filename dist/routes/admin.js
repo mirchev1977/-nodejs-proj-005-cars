@@ -16,5 +16,6 @@ const router = express_1.default.Router();
 router.get('/admin', contrAdmin.getCarsAll);
 router.get('/admin/new', contrAdmin.getCarsNew);
 router.post('/admin/new', contrAdmin.postCarsNew);
+router.get('/admin/delete/:id', contrAdmin.getCarDelete);
 exports.default = router;
 //# sourceMappingURL=admin.js.map

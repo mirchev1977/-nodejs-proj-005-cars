@@ -36,4 +36,24 @@ function postCarsNew(req, res, next) {
     });
 }
 exports.postCarsNew = postCarsNew;
+function getCarDelete(req, res, next) {
+    const _carId = req.params['id'] * 1;
+    const _sortBy = req.query['sort'];
+    Car_1.default.deleteById(_carId).then(OK => {
+        Car_1.default.fetchAll(_sortBy).then(_arrCars => {
+            res.render('admin/cars-all', {
+                _arrCars: _arrCars,
+                sortBy: _sortBy || 'brand-asc'
+            });
+        });
+    }).catch(ERR => {
+        Car_1.default.fetchAll(_sortBy).then(_arrCars => {
+            res.render('admin/cars-all', {
+                _arrCars: _arrCars,
+                sortBy: _sortBy || 'brand-asc'
+            });
+        });
+    });
+}
+exports.getCarDelete = getCarDelete;
 //# sourceMappingURL=admin.js.map

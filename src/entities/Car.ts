@@ -75,7 +75,7 @@ export default class Car {
         } ) );
 
         const promise: Promise<string> = new Promise( ( resolve, reject ) => {
-            fs.writeFile( './src/data/cars.data', _carsJson, err => {
+            fs.writeFile( Car._fileStore, _carsJson, err => {
                 if ( err ) {
                     reject( 'ERR' );
                 } 
@@ -90,7 +90,15 @@ export default class Car {
     static deleteById ( id: number ): Promise<string> {
         const promise: Promise<string> = new Promise( ( resolve, reject ) => {
             Car.fetchOneById( id ).then( carFetched => {
-                return carFetched.delete();
+                const _car = new Car( 
+                    carFetched[ 'id'         ],   
+                    carFetched[ 'brand'      ],   
+                    carFetched[ 'model'      ],   
+                    carFetched[ 'mileage'    ],   
+                    carFetched[ 'producedIn' ],   
+                    carFetched[ 'imgUrl'     ]
+                );
+                return _car.delete();
             } ).then( OK => {
                 resolve( 'OK' );
             }).catch( ERR => {

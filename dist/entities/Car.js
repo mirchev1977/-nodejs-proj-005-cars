@@ -63,7 +63,7 @@ class Car {
             return a.id - b.id;
         }));
         const promise = new Promise((resolve, reject) => {
-            fs_1.default.writeFile('./src/data/cars.data', _carsJson, err => {
+            fs_1.default.writeFile(Car._fileStore, _carsJson, err => {
                 if (err) {
                     reject('ERR');
                 }
@@ -75,7 +75,8 @@ class Car {
     static deleteById(id) {
         const promise = new Promise((resolve, reject) => {
             Car.fetchOneById(id).then(carFetched => {
-                return carFetched.delete();
+                const _car = new Car(carFetched['id'], carFetched['brand'], carFetched['model'], carFetched['mileage'], carFetched['producedIn'], carFetched['imgUrl']);
+                return _car.delete();
             }).then(OK => {
                 resolve('OK');
             }).catch(ERR => {
