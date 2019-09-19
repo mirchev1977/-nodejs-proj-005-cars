@@ -4,8 +4,9 @@ export default class Car {
     private static _fileStore       = './src/data/cars.data';
     private static _fileCarsCounter = './src/data/cars.counter.data';
 
+    public id: number;
     constructor (
-        public id:          number,
+        id:    number,
         public brand:       string,
         public model:       string,
         public mileage:     number,
@@ -13,6 +14,7 @@ export default class Car {
         public imgUrl:      string,
         public favSelected: boolean = false
     ) {
+        this.id = Number( id );
     }
 
     static fetchAll ( sortBy: string = 'brand-asc' ): Promise<Car[]> {

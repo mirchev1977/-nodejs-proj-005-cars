@@ -1,0 +1,46 @@
+.new-car__input-row label, .new-car__input-row input {
+    border: 1px solid;
+    border-color: gray;
+    padding: 10px;
+}
+
+.new-car__input-row label {
+    display: inline-block;
+    width:  150px;
+    background-color: rgb(255,222,173);
+    font-weight: bold;
+}
+
+.new-car__input-row input {
+    display: inline-block;
+    width: 300px;
+    margin-left: 10px;
+    padding: 12px;
+}
+
+.new-car__input-row {
+    margin-top: 10px;
+}
+
+.new-car__input-row button{
+    width: 200px;
+    padding: 10px;
+    font-size: 17px;
+    position: relative;
+    left: 282px;
+}
+
+main {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}
+
+#car-image {
+    width: 50%;
+}
+
+#car-image img {
+    width: 100%;
+    height: auto;
+}

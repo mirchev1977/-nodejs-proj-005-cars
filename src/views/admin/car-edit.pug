@@ -1,0 +1,36 @@
+extends ../layouts/shop-layout.pug
+
+block body__menu
+    div.body-menu
+        ul
+            a( href="/admin" )
+                li Admin
+block append head__css
+    head
+        link(rel="stylesheet", href="/styles/car-edit.css", type="text/css")
+block body__all-cars
+    h1 Edit Car
+    main
+        section#car-form
+            form(action="/admin/edit" method="POST")
+                input( type="hidden" name="id"   value=`${car.id}`  )
+                input( type="hidden" name="sort" value=`${sortBy}`  )
+                div( class="new-car__input-row" )
+                    label( for="brand" ) Brand
+                    input( type="text" id="brand" name="brand" value=`${car.brand}` )
+                div( class="new-car__input-row" )
+                    label( for="model" ) Model
+                    input( type="text" id="model" name="model" value=`${car.model}` )
+                div( class="new-car__input-row" )
+                    label( for="mileage" ) Mileage
+                    input( type="number" id="mileage" name="mileage" value=`${car.mileage}` )
+                div( class="new-car__input-row" )
+                    label( for="producedIn" ) Year of Production
+                    input( type="number" id="producedIn" name="producedIn" value=`${car.producedIn}` )
+                div( class="new-car__input-row" )
+                    label( for="imgUrl" ) Image Url
+                    input( type="text" id="imgUrl" name="imgUrl" value=`${car.imgUrl}` )
+                div( class="new-car__input-row" )
+                    button( type="submit" ) Submit
+        section#car-image
+            img( src=`${car.imgUrl}` )

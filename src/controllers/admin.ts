@@ -10,12 +10,7 @@ export function getCarsAll (  req, res, next  ) {
 }
 
 export function getCarsNew (  req, res, next  ) {
-    Car.fetchAll( req.query[ 'sort' ] ).then( _arrCars => {
-        res.render( 'admin/cars-new', { 
-            _arrCars: _arrCars,
-            sortBy:   req.query[ 'sort' ] || 'brand-asc' 
-        } );
-    } ); 
+        res.render( 'admin/cars-new' );
 }
 
 export function postCarsNew (  req, res, next  ) {
@@ -57,6 +52,46 @@ export function getCarDelete ( req, res, next ) {
             res.render( 'admin/cars-all', { 
                 _arrCars: _arrCars,
                 sortBy:   _sortBy || 'brand-asc' 
+            } );
+        } ); 
+    } );
+}
+
+export function getCarsEdit (  req, res, next  ) {
+    const _carId  = req.params[ 'id'   ] * 1;
+    const _sortBy = req.query[  'sort' ];
+
+    Car.fetchOneById( _carId ).then( car => {
+        res.render( 'admin/car-edit', {
+            car: car, 
+            sortBy: _sortBy
+        } );
+    } );
+}
+
+export function postCarsEdit (  req, res, next  ) {
+    const _car = new Car( 
+            req.body[ 'id'         ],   
+            req.body[ 'brand'      ],   
+            req.body[ 'model'      ],   
+            req.body[ 'mileage'    ],   
+            req.body[ 'producedIn' ],   
+            req.body[ 'imgUrl'     ]
+        );
+
+    _car.save().then( msgSuccess => {
+        Car.fetchAll( 'brand-asc' ).then( _arrCars => {
+            res.render( 'admin/cars-all', { 
+                _arrCars: _arrCars,
+                sortBy:   req.query[ 'sort' ] || 'brand-asc' 
+            } );
+        } ); 
+
+    } ).catch( msgErr => {
+        Car.fetchAll( 'brand-asc' ).then( _arrCars => {
+            res.render( 'admin/cars-all', { 
+                _arrCars: _arrCars,
+                sortBy:   req.query[ 'sort' ] || 'brand-asc' 
             } );
         } ); 
     } );

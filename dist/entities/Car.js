@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 class Car {
     constructor(id, brand, model, mileage, producedIn, imgUrl, favSelected = false) {
-        this.id = id;
         this.brand = brand;
         this.model = model;
         this.mileage = mileage;
         this.producedIn = producedIn;
         this.imgUrl = imgUrl;
         this.favSelected = favSelected;
+        this.id = Number(id);
     }
     static fetchAll(sortBy = 'brand-asc') {
         let jsonCars = '';
