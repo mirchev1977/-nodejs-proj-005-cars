@@ -6,13 +6,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 class Car {
     constructor(id, brand, model, mileage, producedIn, imgUrl, favSelected = false) {
+        this.favSelected = false;
+        if (!brand)
+            throw new Error('Please, enter the Car Brand!');
+        if (!model)
+            throw new Error('Please, enter the Car Model!');
+        if (!mileage)
+            throw new Error('Please, enter the Car Mileage!');
+        if (mileage < 0)
+            throw new Error('Please, enter Mileage >= 0!');
+        if (!producedIn)
+            throw new Error('Please, enter the Production Year!');
+        if (!imgUrl)
+            throw new Error('Please, enter the Image Url!');
+        if (producedIn < 1900 || producedIn > 2100)
+            throw new Error('Please, enter the Production Year > 1900 and < 2100!');
+        this.id = Number(id);
         this.brand = brand;
         this.model = model;
         this.mileage = mileage;
         this.producedIn = producedIn;
         this.imgUrl = imgUrl;
         this.favSelected = favSelected;
-        this.id = Number(id);
     }
     static fetchAll(sortBy = 'brand-asc') {
         let jsonCars = '';

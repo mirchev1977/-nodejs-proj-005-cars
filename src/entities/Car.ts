@@ -5,16 +5,38 @@ export default class Car {
     private static _fileCarsCounter = './src/data/cars.counter.data';
 
     public id: number;
-    constructor (
-        id:    number,
-        public brand:       string,
-        public model:       string,
-        public mileage:     number,
-        public producedIn:  number,
-        public imgUrl:      string,
-        public favSelected: boolean = false
+    public brand:       string;
+    public model:       string;
+    public mileage:     number;
+    public producedIn:  number;
+    public imgUrl:      string;
+    public favSelected: boolean = false;
+
+constructor (
+        id:          number,
+        brand:       string,
+        model:       string,
+        mileage:     number,
+        producedIn:  number,
+        imgUrl:      string,
+        favSelected: boolean = false
     ) {
-        this.id = Number( id );
+        if ( !brand      ) throw new Error( 'Please, enter the Car Brand!'        );
+        if ( !model      ) throw new Error( 'Please, enter the Car Model!'        );
+        if ( !mileage    ) throw new Error( 'Please, enter the Car Mileage!'      );
+        if ( mileage < 0 ) throw new Error( 'Please, enter Mileage >= 0!'         );
+        if ( !producedIn ) throw new Error( 'Please, enter the Production Year!'  );
+        if ( !imgUrl     ) throw new Error( 'Please, enter the Image Url!'        );
+        if ( producedIn < 1900 || producedIn > 2100 ) 
+            throw new Error( 'Please, enter the Production Year > 1900 and < 2100!' );
+
+        this.id          = Number( id );
+        this.brand       = brand;
+        this.model       = model;
+        this.mileage     = mileage;
+        this.producedIn  = producedIn;
+        this.imgUrl      = imgUrl;
+        this.favSelected = favSelected;
     }
 
     static fetchAll ( sortBy: string = 'brand-asc' ): Promise<Car[]> {

@@ -21,3 +21,9 @@
 .body-menu > ul > a > li:hover {
     background-color: yellow;
 }
+
+#err {
+    text-align:  center;
+    color:     red;
+    font-weight: bolder;
+}
