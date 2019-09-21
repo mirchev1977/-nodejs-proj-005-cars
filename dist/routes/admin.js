@@ -14,13 +14,13 @@ const express_1 = __importDefault(require("express"));
 const contrAdmin = __importStar(require("../controllers/admin"));
 const templ = __importStar(require("../entities/templates"));
 const router = express_1.default.Router();
-router.get('/admin', contrAdmin.getCarsAll);
-router.get('/admin/new', contrAdmin.getCarsNew);
-router.post('/admin/new', contrAdmin.postCarsNew);
-router.get('/admin/delete/:id', contrAdmin.getCarDelete);
-router.get('/admin/edit/:id', contrAdmin.getCarsEdit);
-router.post('/admin/edit', contrAdmin.postCarsEdit);
-router.get('/admin/restore', (req, res, next) => {
+router.get('', contrAdmin.getCarsAll);
+router.get('/new', contrAdmin.getCarsNew);
+router.post('/new', contrAdmin.postCarsNew);
+router.get('/delete/:id', contrAdmin.getCarDelete);
+router.get('/edit/:id', contrAdmin.getCarsEdit);
+router.post('/edit', contrAdmin.postCarsEdit);
+router.get('/restore', (req, res, next) => {
     templ.seedCar();
     res.write('restore');
     res.send();

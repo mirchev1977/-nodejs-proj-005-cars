@@ -14,8 +14,8 @@ app.set('view engine', 'pug');
 app.set('views', 'src/views');
 app.use(express_1.default.static(path_1.default.join(rootDir_1.default, 'public')));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
-app.use(shop_1.default);
-app.use(admin_1.default);
+app.use('/', shop_1.default);
+app.use('/admin', admin_1.default);
 app.use((req, res, next) => {
     res.render('404');
 });

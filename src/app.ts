@@ -16,8 +16,8 @@ app.set( 'views',       'src/views' );
 app.use( express.static( path.join( rootDir, 'public' ) ) ); 
 app.use( bodyParser.urlencoded( { extended: false } ) );
 
-app.use( shopRoutes  );
-app.use( adminRoutes );
+app.use( '/',      shopRoutes  );
+app.use( '/admin', adminRoutes );
 
 app.use( ( req, res, next ) => {
     res.render( '404' );
